@@ -27,7 +27,7 @@ function CreateTaskForm({ onSubmitSuccess }: CreateTaskFormProps) {
   const onSubmit = async (data: TCreateTaskSchema) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/task",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/task`,
         data,
         { withCredentials: true }
       );

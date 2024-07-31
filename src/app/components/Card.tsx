@@ -27,8 +27,10 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const [completed, setCompleted] = useState(false);
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const handleDelete = async () => {
-    return await axios.delete(`http://localhost:3001/api/task/${taskid}`, {
+    return await axios.delete(`${apiUrl}/api/task/${taskid}`, {
       withCredentials: true,
     });
   };
@@ -36,7 +38,7 @@ const Card: React.FC<CardProps> = ({
   const handleProgress = async () => {
     if (status == "To-Do") {
       return await axios.patch(
-        `http://localhost:3001/api/task/${taskid}`,
+        `${apiUrl}/api/task/${taskid}`,
         {
           status: "In Progress",
         },
@@ -45,7 +47,7 @@ const Card: React.FC<CardProps> = ({
     }
     if (status == "In Progress") {
       return await axios.patch(
-        `http://localhost:3001/api/task/${taskid}`,
+        `${apiUrl}/api/task/${taskid}`,
         {
           status: "Under Review",
         },
@@ -54,7 +56,7 @@ const Card: React.FC<CardProps> = ({
     }
     if (status == "Under Review") {
       return await axios.patch(
-        `http://localhost:3001/api/task/${taskid}`,
+        `${apiUrl}/api/task/${taskid}`,
         {
           status: "Completed",
         },
@@ -69,7 +71,7 @@ const Card: React.FC<CardProps> = ({
     if (completed == false) {
       setCompleted(true);
       return await axios.patch(
-        `http://localhost:3001/api/task/${taskid}`,
+        `${apiUrl}/api/task/${taskid}`,
         {
           status: "Completed",
         },
@@ -78,7 +80,7 @@ const Card: React.FC<CardProps> = ({
     } else {
       setCompleted(false);
       return await axios.patch(
-        `http://localhost:3001/api/task/${taskid}`,
+        `${apiUrl}/api/task/${taskid}`,
         {
           status: "Completed",
         },

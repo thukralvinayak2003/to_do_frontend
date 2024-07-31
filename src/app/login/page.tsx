@@ -24,9 +24,10 @@ const Login = () => {
   });
 
   const onSubmit = async (data: TLogInSchema) => {
+    console.log(process.env.NEXT_PUBLIC_API_URL);
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
         data,
         { withCredentials: true }
       );

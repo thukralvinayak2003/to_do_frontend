@@ -16,7 +16,7 @@ export default function Page() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await axios.get("http://localhost:3001/api/auth/logout", {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`, {
       withCredentials: true,
     });
     router.push(`/`);
@@ -24,9 +24,12 @@ export default function Page() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/task", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/task`,
+        {
+          withCredentials: true,
+        }
+      );
       setName(response.data.data.doc[0].userId.name);
       setTasks(response.data.data.doc);
     } catch (error) {
